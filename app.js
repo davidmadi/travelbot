@@ -19,6 +19,7 @@
 var express = require('express'); // app server
 var bodyParser = require('body-parser'); // parser for post requests
 var AssistantV1 = require('watson-developer-cloud/assistant/v1'); // watson sdk
+const offerChecker = require('./library/offers/checker');
 
 var app = express();
 
@@ -74,7 +75,13 @@ app.post('/api/message', function (req, res) {
       }
     }
 
-    return res.json(updateMessage(payload, data));
+    let resData = updateMessage(payload, data);
+    offerChecker.doOffer(resData)
+    .then(response =>{
+      res.json(response);
+    })
+
+    //return res.json(resData);
   });
 });
 
