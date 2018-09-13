@@ -7,6 +7,7 @@ npm i --save
 npm run
 <br/>
 <br/>
+Pode ser testado em: <a href="https://travel-app-chat.mybluemix.net/">link</a>
 <br/>
 <br/>
 <br/>

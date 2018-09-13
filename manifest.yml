@@ -1,6 +1,8 @@
 applications:
-- name: watson-assistant-simple
+- name: travel-app-chat
   command: npm start
   path: .
   memory: 256M
   instances: 1
+  services:
+  - travelbot-watson-app
