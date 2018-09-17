@@ -17,20 +17,23 @@ module.exports = class transfer{
     switch(aeroporto){
       case 'cgh':
         price = "R$ 35,00"
-        break
+        break;
       case 'sdu':
         price = "R$ 30,00"
-        break
+        break;
       case 'gig':
         price = "R$ 25,00"
-        break
+        break;
       case 'gru':
         price = "R$ 45,00"
-        break
+        break;
+      default:
+        price = "R$ 50,00"
+        break;
     }
 
     if (price){
-      res.output.text += "... Hum, o preço vai ser " + price;
+      res.output.text += ", " + price;
     }
 
   }
