@@ -7,7 +7,7 @@
     "start": "node server.js",
     "test-integration": "casperjs test ./test/integration/test.*.js",
     "test-integration-runner": "NODE_ENV=test node casper-runner.js",
-    "test" : "mocha --compilers js:babel-core/register",
+    "test": "mocha --compilers js:babel-core/register",
     "test-unit": "jest test/unit --coverage",
     "lint": "eslint .",
     "autofix": "eslint --fix .",
@@ -22,6 +22,7 @@
     "body-parser": "^1.18.3",
     "dotenv": "^6.0.0",
     "express": "^4.16.3",
+    "string-similarity": "^1.2.2",
     "watson-developer-cloud": "^3.7.0"
   },
   "publishConfig": {
