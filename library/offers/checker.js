@@ -11,13 +11,12 @@ module.exports = class offersChecker{
       if (transfeOffer = transfer.mustSearch(res))
       {
         transfer.offer(res, transfeOffer);
+        resolve(res);
       }
       else if (city = entertainment.mustSearch(res))
       {
-        entertainment.offer(res, city);
+        entertainment.offer(resolve, res, city);
       }
-
-      resolve(res);
     });
   }
 

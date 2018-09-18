@@ -12,7 +12,7 @@ module.exports = class transfer{
     return false;
   }
 
-  static offer(res, aeroporto){
+  static offer(mainResolve, res, aeroporto){
     let price = false;
     switch(aeroporto){
       case 'cgh':
@@ -35,7 +35,7 @@ module.exports = class transfer{
     if (price){
       res.output.text += ", " + price;
     }
-
+    mainResolve(res);
   }
 
 }

@@ -1,5 +1,6 @@
 import {expect} from 'chai';
 import comparisonNames from '../library/comparison/Names';
+import entertainment from '../library/offers/entertainment/entertainment';
 const stringSimilarity = require('string-similarity');
 
 describe('generic', _ => {
@@ -17,5 +18,14 @@ describe('generic', _ => {
     let res = comparisonNames.Similar('são paulo', 'sao paulo');
     expect(res).to.equals(true, res + ' não é true');
   })
+
+  it('html request', () => {
+    entertainment.search("sao paulo")
+    .then(()=>{
+      entertainment.search("rio de janeiro");
+    });
+  })
+
+
 })
 
