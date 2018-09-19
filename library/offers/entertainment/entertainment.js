@@ -1,6 +1,6 @@
 const fetch = require('node-fetch');
-var htmlparser = require("htmlparser2");
-let ingressosPage = null;
+const nameComparison  = require('../../comparison/Names');
+let listOfOptions = null;
 
 module.exports = class entertainment{
 
@@ -28,30 +28,40 @@ module.exports = class entertainment{
 
   static search(cidade){
     return new Promise((resolve, reject)=>{
-      if (!ingressosPage)
+      if (!listOfOptions)
       {
         console.log('web http ingressos');
-        fetch("https://www.cvc.com.br/ingressos")
+        fetch("https://www.cvc.com.br/drupal-api?target-context=/tickets-home-details/todos-os-paises/todos-os-destinos/todos-os-tipos-de-ingressos")
         .then(pageHtml =>{
-          console.log('retornou');
-          ingressosPage = pageHtml;
-          let list = entertainment.readHtml(ingressosPage);
+          return pageHtml.json();
+        })
+        .then(body =>{
+          //console.log(body);
+          listOfOptions = body;
+          let list = entertainment.parseTours(cidade);
           resolve(list);
+        })
+        .catch(()=>{
+          resolve([]);
         });
       }
       else
       {
-        let list = entertainment.readHtml(ingressosPage);
+        let list = entertainment.parseTours(cidade);
         resolve(list);
     }
     });
   }
 
-  static readHtml(page){
-    return [
-      "Aqua",
-      "Joker"
-    ];
+  static parseTours(city){
+    let list = [];
+
+    listOfOptions.forEach(element => {
+      if (nameComparison.Similar(city, element.product_destination)){
+        list.push("- " + element.product_name);
+      }
+    });
+    return list;
   }
 
 

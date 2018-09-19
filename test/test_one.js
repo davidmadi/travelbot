@@ -19,7 +19,7 @@ describe('generic', _ => {
     expect(res).to.equals(true, res + ' não é true');
   })
 
-  it('html request', () => {
+  it('html request 2', () => {
     entertainment.search("sao paulo")
     .then(()=>{
       entertainment.search("rio de janeiro");

@@ -10,12 +10,15 @@ module.exports = class offersChecker{
       let transfeOffer = null; 
       if (transfeOffer = transfer.mustSearch(res))
       {
-        transfer.offer(res, transfeOffer);
-        resolve(res);
+        transfer.offer(resolve, res, transfeOffer);
       }
       else if (city = entertainment.mustSearch(res))
       {
         entertainment.offer(resolve, res, city);
+      }
+      else
+      {
+        resolve(res);
       }
     });
   }
