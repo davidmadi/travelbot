@@ -9,12 +9,12 @@
   <meta property="og:title" content="Conversation Chat Simple" />
   <meta property="og:description" content="Sample application that shows how to use the Watson Assistant API to identify user intents"
   />
-  <link rel="shortcut icon" href="favicon.png" type="image/png">
+  <link rel="shortcut icon" href="cvc_favicon.ico" type="img/ico">
   <link rel="stylesheet" href="css/app.css">
 </head>
 
 <body>
-  <div id="view-change-button" class="button" onclick="PayloadPanel.togglePanel(event, this)">
+  <div id="view-change-button" class="view-change-button button hide" onclick="PayloadPanel.togglePanel(event, this)">
     <img class="option full" src="../img/Chat Button.png">
     <img class="option not-full" src="../img/Code Button.png">
   </div>
@@ -30,7 +30,7 @@
         </div>
       </div>
     </div>
-    <div id="payload-column" class="fixed-column content-column">
+    <div id="payload-column" class="fixed-column content-column hide">
       <div id="payload-initial-message">
         Digite alguma pergunta.
       </div>
