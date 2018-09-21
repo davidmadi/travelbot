@@ -7,10 +7,8 @@ module.exports = class entertainment{
   static mustSearch(res){
 
     if (res.context && res.context['search-city-entertainment'] && res.context['cidadeTuristica']){
-      if (res.entities && res.entities.length){
-        console.log('procurar entretenimento', res.context['cidadeTuristica']);
-        return res.context['cidadeTuristica'];
-      }
+      console.log('procurar entretenimento', res.context['cidadeTuristica']);
+      return res.context['cidadeTuristica'];
     }
     //console.log(res);
     return false;
@@ -19,9 +17,13 @@ module.exports = class entertainment{
   static offer(mainResolve, res, cidadeTuristica){
     entertainment.search(cidadeTuristica)
     .then(options =>{
-      options.forEach(element => {
-        res.output.text.push(element);        
-      });
+      let optionInGeneric = res.output.generic.find(g => g.response_type == 'option');
+      if (optionInGeneric){
+        options.forEach(element => {
+          optionInGeneric.options.push(element);        
+        });
+      }
+
       mainResolve(res);
     });
   }
@@ -58,7 +60,14 @@ module.exports = class entertainment{
 
     listOfOptions.forEach(element => {
       if (nameComparison.Similar(city, element.product_destination)){
-        list.push("- " + element.product_name);
+        list.push({
+          label : element.product_name,
+          value : {
+            input :{
+              text: "Gostaria de saber mais sobre " + element.product_name
+            }
+          }
+        });
       }
     });
     return list;
