@@ -14,6 +14,18 @@ module.exports = class entertainment{
     return false;
   }
 
+  static mustGetAttraction(res){
+    if (res.context && res.context['get-attraction'] && res.context['cidadeTuristica']){
+      console.log('procurar atracao', res.context['get-attraction']);
+      return {
+        attractionName : res.context['get-attraction'],
+        cidadeTuristica : res.context['cidadeTuristica']
+      };
+    }
+    //console.log(res);
+    return false;
+  }
+
   static offer(mainResolve, res, cidadeTuristica){
     entertainment.search(cidadeTuristica)
     .then(options =>{
@@ -26,6 +38,36 @@ module.exports = class entertainment{
 
       mainResolve(res);
     });
+  }
+
+
+  static offerAttraction(resolve, res, attraction){
+
+    let found = false;
+    listOfOptions.forEach(destination =>{
+      if (destination.product_destination == attraction.cidadeTuristica &&
+          destination.product_name == attraction.attractionName){
+        
+        let optionInGeneric = res.output.generic.find(g => g.response_type == 'option');
+        if (optionInGeneric){
+          let linkOption = {
+            label : attraction.attractionName,
+            value : {
+              input :{
+                text: "Clique aqui: " + attraction.attractionName
+              },
+              link : {
+                href : "https://www.cvc.com.br" + destination.product_linkdetalis
+              }
+            }
+          }
+          optionInGeneric.options.push(linkOption);        
+        }
+        found = true;
+      }
+    });
+
+    resolve(res);
   }
 
   static search(cidade){
@@ -66,12 +108,16 @@ module.exports = class entertainment{
             input :{
               text: "Gostaria de saber mais sobre " + element.product_name
             }
+          },
+          variables : {
+            "attraction-name" : element.product_name
           }
         });
       }
     });
     return list;
   }
+
 
 
 }

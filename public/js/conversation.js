@@ -21,6 +21,7 @@ var ConversationPanel = (function () {
   return {
     init: init,
     inputKeyDown: inputKeyDown,
+    sendOption : sendOption,
     sendMessage: sendMessage
   };
 
@@ -183,7 +184,10 @@ var ConversationPanel = (function () {
             outMsg += '<ul>';
             for (i = 0; i < options.length; i++) {
               if (options[i].value) {
-                outMsg += '<li>' + options[i].label + '</li>';
+                if (options[i].value.link)
+                  outMsg += '<li><a target="blank" href="'+options[i].value.link.href+'">' + options[i].label + '</a></li>';
+                else
+                  outMsg += '<li>' + options[i].label + '</li>';
               }
             }
             outMsg += '</ul>';
@@ -191,7 +195,7 @@ var ConversationPanel = (function () {
             outMsg += '<ul>';
             for (i = 0; i < options.length; i++) {
               if (options[i].value) {
-                outMsg += '<li><div class="button-options" onclick="ConversationPanel.sendMessage(\'' + options[i].value.input.text + '\');" >' + options[i].label + '</div></li>';
+                outMsg += '<li><div class="button-options" obj=\'' + JSON.stringify(options[i]) + '\' onclick="ConversationPanel.sendOption(this);" >' + options[i].label + '</div></li>';
               }
             }
             outMsg += '</ul>';
@@ -249,12 +253,22 @@ var ConversationPanel = (function () {
     }
   }
 
-  function sendMessage(text) {
+  function sendOption(tag){
+    let option = JSON.parse(tag.getAttribute('obj'));
+    sendMessage(option.value.input.text, option.variables);
+  }
+
+  function sendMessage(text, variables) {
     // Retrieve the context from the previous server response
-    var context;
+    var context = {};
     var latestResponse = Api.getResponsePayload();
     if (latestResponse) {
       context = latestResponse.context;
+    }
+
+    if (variables){
+      for(var iable in variables)
+        context[iable] = variables[iable];
     }
 
     // Send the user message
