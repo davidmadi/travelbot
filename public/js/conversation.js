@@ -184,8 +184,12 @@ var ConversationPanel = (function () {
             outMsg += '<ul>';
             for (i = 0; i < options.length; i++) {
               if (options[i].value) {
+                if(options[i].value.image) {
+                  outMsg += '<a target="blank" href="'+options[i].value.link.href+'"><img src=' + options[i].value.image.href + ' /></a>'
+                }
+
                 if (options[i].value.link)
-                  outMsg += '<li><a target="blank" href="'+options[i].value.link.href+'">' + options[i].label + '</a></li>';
+                  outMsg += '<li><a target="blank" href="'+options[i].value.link.href+'">' + options[i].value.input.text + '</a></li>';
                 else
                   outMsg += '<li>' + options[i].label + '</li>';
               }
@@ -195,7 +199,7 @@ var ConversationPanel = (function () {
             outMsg += '<ul>';
             for (i = 0; i < options.length; i++) {
               if (options[i].value) {
-                outMsg += '<li><div class="button-options" obj=\'' + JSON.stringify(options[i]) + '\' onclick="ConversationPanel.sendOption(this);" >' + options[i].label + '</div></li>';
+                outMsg += '<li class="button-line"><div class="button-options" obj=\'' + JSON.stringify(options[i]) + '\' onclick="ConversationPanel.sendOption(this);" >' + options[i].label + '</div></li>';
               }
             }
             outMsg += '</ul>';
