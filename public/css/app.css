@@ -207,10 +207,10 @@ div {
   line-height: 1.3125rem;
   height: 2.5rem;
   max-width: 100%;
-  padding-left: 0.125rem;
+  /* padding-left: 0.125rem; */
   margin-bottom: -0.125rem;
   font-family: Helvetica Neue for IBM, Helvetica Neue, Helvetica, Arial, sans-serif;
-
+  min-width: 50px;
 }
 
 #textInput.underline {
@@ -242,8 +242,8 @@ input:-moz-placeholder {
 .inputOutline {
   display: block;
   border-bottom: 0.0625rem solid #aeaeae;
-  margin-left: 0.5rem;
-  margin-right: 0.5rem;
+  /*margin-left: 0.5rem;
+  margin-right: 0.5rem;*/
 }
 
 #textInputDummy {
@@ -331,13 +331,24 @@ html{
   }
 
   .chat-column {
-    padding-top: 4rem;
+    padding-top: 0.5rem;
   }
 
   #payload-column {
     width: 0;
     max-width: none;
     min-width: initial;
+  }
+
+  /*
+  .inputOutline{
+    margin-left: 1.5rem;
+    margin-right: 1.5rem;
+  }*/
+
+  #scrollingChat {
+    height: calc(100% - 19rem);
+    margin-top: 0;
   }
 }
 

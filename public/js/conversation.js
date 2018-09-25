@@ -101,9 +101,9 @@ var ConversationPanel = (function () {
           padding = maxPadding;
         }
 
-        var widthValue = (dummy.offsetWidth + padding) + 'px';
-        input.setAttribute('style', 'width:' + widthValue);
-        input.style.width = widthValue;
+        //var widthValue = (dummy.offsetWidth + padding) + 'px';
+        //input.setAttribute('style', 'width:' + widthValue);
+        //input.style.width = widthValue;
       }
     }
 
