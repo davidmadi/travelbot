@@ -22,7 +22,8 @@ var ConversationPanel = (function () {
     init: init,
     inputKeyDown: inputKeyDown,
     sendOption : sendOption,
-    sendMessage: sendMessage
+    sendMessage: sendMessage,
+    sendByButton:sendByButton
   };
 
   // Initialize the module
@@ -54,10 +55,15 @@ var ConversationPanel = (function () {
   function setupInputBox() {
     var input = document.getElementById('textInput');
     var dummy = document.getElementById('textInputDummy');
+    var button = document.getElementById('sendButton');
     var minFontSize = 14;
     var maxFontSize = 16;
     var minPadding = 4;
     var maxPadding = 6;
+
+    if (button){
+      button.addEventListener("click", sendByButton);
+    }
 
     // If no dummy input box exists, create one
     if (dummy === null) {
@@ -77,8 +83,8 @@ var ConversationPanel = (function () {
       if (input.value === '') {
         // If the input box is empty, remove the underline
         input.classList.remove('underline');
-        input.setAttribute('style', 'width:' + '100%');
-        input.style.width = '100%';
+        input.setAttribute('style', 'width:' + '90%');
+        input.style.width = '90%';
       } else {
         // otherwise, adjust the dummy text to match, and then set the width of
         // the visible input box to match it (thus extending the underline)
@@ -256,7 +262,7 @@ var ConversationPanel = (function () {
       scrollingChat.scrollTop = scrollEl.offsetTop;
     }
   }
-
+  
   function sendOption(tag){
     let option = JSON.parse(tag.getAttribute('obj'));
     sendMessage(option.value.input.text, option.variables);
@@ -289,4 +295,13 @@ var ConversationPanel = (function () {
       Common.fireEvent(inputBox, 'input');
     }
   }
+
+  function sendByButton(){
+    var inputBox = document.getElementById('textInput');
+    sendMessage(inputBox.value);
+    // Clear input box for further messages
+    inputBox.value = '';
+    Common.fireEvent(inputBox, 'input');
+  }
+
 }());

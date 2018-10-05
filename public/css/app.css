@@ -459,4 +459,15 @@ html{
   list-style-type: none; 
 }
 
+.sendLink{
+  cursor: pointer;
+  float: right;
+  width: 9%;
+}
 
+.sendButtonImage {
+  width:100%;
+  background-color: #ffdc2c;
+  border-radius: 32px;
+  padding: 9px;
+}
