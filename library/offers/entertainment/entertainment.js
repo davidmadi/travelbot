@@ -54,7 +54,7 @@ module.exports = class entertainment{
             label : attraction.attractionName,
             value : {
               input :{
-                text: "Clique aqui para saber mais -> " + attraction.attractionName
+                text: "Click here to know more -> " + attraction.attractionName
               },
               link : {
                 href : "https://www.cvc.com.br" + destination.product_linkdetalis
@@ -109,7 +109,7 @@ module.exports = class entertainment{
           label : element.product_name,
           value : {
             input :{
-              text: "Gostaria de saber mais sobre " + element.product_name
+              text: "I would like to know more about " + element.product_name
             }
           },
           variables : {

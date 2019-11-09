@@ -4,7 +4,7 @@ module.exports = class transfer{
 
     if (res.context && res.context['transfer-cost-destination']){
       if (res.entities && res.entities.length){
-        console.log('transfer para', res.entities[0].value);
+        console.log('transfer to', res.entities[0].value);
         return res.entities[0].value;
       }
     }
@@ -16,19 +16,19 @@ module.exports = class transfer{
     let price = false;
     switch(aeroporto){
       case 'cgh':
-        price = "R$ 35,00"
+        price = "$ 35.00"
         break;
       case 'sdu':
-        price = "R$ 30,00"
+        price = "$ 30.00"
         break;
       case 'gig':
-        price = "R$ 25,00"
+        price = "$ 25.00"
         break;
       case 'gru':
-        price = "R$ 45,00"
+        price = "$ 45.00"
         break;
       default:
-        price = "R$ 50,00"
+        price = "$ 50.00"
         break;
     }
 

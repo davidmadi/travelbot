@@ -1,13 +1,13 @@
-Servidor TravelBot 
+TravelBot Server 
 <br/>
-Servidor bot de consulta ao IBM watson para atendimento sobre perguntas de viagem.<br/>
+Bot server for IBM Watson made to answer travel questions and recommend extra services<br/>
 <br/>
 npm i --save
 <br/>
 npm run
 <br/>
 <br/>
-Pode ser testado em: <a href="https://travel-app-chat.mybluemix.net/">link</a>
+Online testing at: <a href="https://travel-app-chat.mybluemix.net/">link</a>
 <br/>
 <br/>
 <br/>
