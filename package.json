@@ -40,7 +40,7 @@
     "chai": "^4.1.2",
     "codecov": "^3.0.4",
     "eslint": "^5.1.0",
-    "gulp": "^3.9.1",
+    "gulp": "^4.0.2",
     "gulp-mocha": "^6.0.0",
     "jest": "^23.4.1",
     "phantomjs-prebuilt": "^2.1.16",
